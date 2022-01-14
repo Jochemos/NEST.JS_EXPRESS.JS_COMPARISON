@@ -1,0 +1,12 @@
+{
+  "type": "postgres",
+  "host": "localhost",
+  "port": 5432,
+  "database": "nest_comparison",
+  "username": "postgres",
+  "password": "password123",
+  "logging": false,
+  "entities": ["src/entity/**/*.js"],
+  "autoLoadEntities": true,
+  "synchronize": true
+}
