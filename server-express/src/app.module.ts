@@ -1,4 +1,5 @@
 import { createConnection } from 'typeorm';
+import { Comment_Entity } from './user/user.entity';
 
 
 require('dotenv').config();
@@ -12,11 +13,11 @@ createConnection({
   password: process.env.DATABASE_PASSWORD,
   logging: false,
   entities: [
-    // entity add
+    Comment_Entity
   ],
   autoLoadEntities: true,
   synchronize: true
 });
 
 
-console.log(`on this part active AppModule`);
+console.log(`AppModule is active`);
