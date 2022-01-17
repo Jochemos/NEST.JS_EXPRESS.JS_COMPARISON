@@ -1,31 +1,32 @@
 import { Module } from '@nestjs/common';
-import { UserModule } from './user/user.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
-import { Comment_Entity } from './user/user.entity';
+import CommentEntity from 'database/entities/user.entity';
+import UserModule from 'src/user/user.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
-      isGlobal: true
+      isGlobal: true,
+      envFilePath: ['database/.config.env', '.base.env'],
     }),
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: process.env.DATABASE_HOST,
-      port: parseInt(process.env.DATABASE_PORT),
+      port: parseInt(process.env.DATABASE_PORT, 10) || 5432,
       database: process.env.DATABASE_NAME,
       username: process.env.DATABASE_USER,
       password: process.env.DATABASE_PASSWORD,
       logging: false,
       entities: [
-        Comment_Entity
+        CommentEntity,
       ],
       autoLoadEntities: true,
-      synchronize: true
+      synchronize: true,
     }),
-    UserModule
+    UserModule,
   ],
   controllers: [],
   providers: [],
 })
-export class AppModule {}
+export default class AppModule {}
