@@ -1,23 +1,20 @@
 import { createConnection } from 'typeorm';
-import { Comment_Entity } from './user/user.entity';
-
-
-require('dotenv').config();
+import CommentEntity from '../database/entities/user.entity.ts';
+import 'dotenv/config';
 
 createConnection({
   type: 'postgres',
   host: process.env.DATABASE_HOST,
-  port: parseInt(process.env.DATABASE_PORT),
+  port: parseInt(process.env.DATABASE_PORT, 10) || 5432,
   database: process.env.DATABASE_NAME,
   username: process.env.DATABASE_USER,
   password: process.env.DATABASE_PASSWORD,
   logging: false,
   entities: [
-    Comment_Entity
+    CommentEntity,
   ],
   autoLoadEntities: true,
-  synchronize: true
+  synchronize: true,
 });
 
-
-console.log(`AppModule is active`);
+console.log('AppModule is active');

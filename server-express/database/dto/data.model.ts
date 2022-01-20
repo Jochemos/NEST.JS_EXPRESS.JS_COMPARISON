@@ -1,10 +1,9 @@
-export class DataModel {
-
+export default class DataModel {
   commentId?: number;
 
   author: string;
 
   comment: string;
 
-  created_At?: Date;
+  createdAt?: Date;
 }
